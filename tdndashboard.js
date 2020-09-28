@@ -18,7 +18,7 @@ $(document).ready(function () {
                 "&units=imperial",
             dataType: "json",
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 $("#today").empty();
                 // create html content for current weather
                 var title = $("<h3>")
@@ -47,5 +47,39 @@ $(document).ready(function () {
                 getUv(data.coord.lat, data.coord.lon)
             },
         });
+    }
+    function getforecast(searchValue) {
+        $.ajax({
+            type: "GET",
+            url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" +
+                APIKEY +
+                "&units=imperial",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast:</h4>").append("<div class=\"row\">");
+                console.log(data)
+                for (i = 0; i < data.list.length; i++) {
+                    if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+                        var col = $("<div>").addClass("col-md-2");
+                        var card = $("<div>").addClass("card bg-primary text-white");
+                        var body = $("<div>").addClass("card-body p2");
+                        var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
+                        var tempo = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + "°F");
+                        var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
+
+                        var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+
+                        col.append(card);
+                        card.append(body);
+                        body.append(title, tempo, humidity, img);
+
+                        $("#forecast .row").append(col);
+
+                    }
+
+                }
+            }
+        })
     }
 })
