@@ -68,7 +68,7 @@ $(document).ready(function () {
                         var tempo = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + "°F");
                         var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
 
-                        var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+                        var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
 
                         col.append(card);
                         card.append(body);
