@@ -13,7 +13,7 @@ $(document).ready(function () {
     function searchWeather(searchValue) {
         $.ajax({
             type: "GET",
-            url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" +
+            url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" +
                 APIKEY +
                 "&units=imperial",
             dataType: "json",
@@ -37,7 +37,7 @@ $(document).ready(function () {
                 var cardBody = $("<div>").addClass("card-body");
                 var img = $("<img>").attr(
                     "src",
-                    "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
+                    "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
                 );
                 title.append(img);
                 cardBody.append(title, temp, humid, wind);
@@ -51,7 +51,7 @@ $(document).ready(function () {
     function getforecast(searchValue) {
         $.ajax({
             type: "GET",
-            url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" +
+            url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" +
                 APIKEY +
                 "&units=imperial",
             dataType: "json",
@@ -85,7 +85,7 @@ $(document).ready(function () {
     function getUv(lat, lon) {
         $.ajax({
             type: "GET",
-            url: "http://api.openweathermap.org/data/2.5/uvi?&appid=" +
+            url: "https://api.openweathermap.org/data/2.5/uvi?&appid=" +
                 APIKEY +
                 "&lat=" + lat + "&lon=" + lon,
             dataType: "json",
